@@ -1,5 +1,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AuthService{
 
@@ -27,7 +28,7 @@ class AuthService{
       return cred.user;
     }
     catch(e){
-      print("Something went wrong");
+      print('Something went wrong');
     }
   }
 }

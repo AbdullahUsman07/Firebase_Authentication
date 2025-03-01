@@ -22,7 +22,7 @@ class CustomButton extends StatelessWidget {
         color: Colors.green,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Center(child: Text(title,style: TextStyle(fontSize: 20),),),
+      child: Center(child: Text(title,style: const TextStyle(fontSize: 20),),),
       ),
     );
   }

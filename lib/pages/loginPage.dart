@@ -1,12 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_practice/extensions/stringextension.dart';
 import 'package:firebase_practice/firebase_auth.dart';
-import 'package:firebase_practice/pages/homePage.dart';
-import 'package:firebase_practice/pages/outputPage.dart';
 import 'package:firebase_practice/pages/signupPage.dart';
 import 'package:firebase_practice/validation/validationLogic.dart';
 import 'package:firebase_practice/widgets/customInput.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -39,13 +37,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Welcome to Login',
-      //       style: TextStyle( color: Colors.white)),
-      //   backgroundColor: Theme.of(context).primaryColor,
-      //   centerTitle: true,
-      //  // elevation: 10.0,
-      // ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -90,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).primaryColor,
                     foregroundColor: Colors.white,
-                    minimumSize: Size(170, 50),
+                    minimumSize: const Size(170, 50),
                   ),
                   onPressed: validation.isValidLogin?() {
                     _emailController.clear();
@@ -111,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                      onPressed:(){
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context)=> SignupPage())
+                        MaterialPageRoute(builder: (context)=> const SignupPage())
                       );
                      }
                       , child: const Text('Register')),
@@ -127,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
     User? user = await auth.loginUser(email, password);
 
     if(user!=null){
-      Navigator.push(context,MaterialPageRoute(builder: (context)=>ShowSuccess(title: "Login Successful")));
+      return Fluttertoast.showToast(msg: 'Login Successful');
     }
   }
 

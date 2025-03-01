@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_practice/pages/homePage.dart';
-import 'package:firebase_practice/pages/loginPage.dart';
 import 'package:flutter/material.dart';
 
 void main() async{
@@ -22,7 +21,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(  
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.green),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }

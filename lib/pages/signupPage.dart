@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_practice/firebase_auth.dart';
 import 'package:firebase_practice/pages/loginPage.dart';
-import 'package:firebase_practice/pages/outputPage.dart';
 import 'package:firebase_practice/validation/validationLogic.dart';
-import 'package:firebase_practice/validation/validationModel.dart';
 import 'package:firebase_practice/widgets/customInput.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -43,14 +42,9 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text(
-      //     'Register',
-      //     style: TextStyle(color: Colors.white),
-      //   ),
-      //   centerTitle: true,
-      //   backgroundColor: Theme.of(context).primaryColor,
-      // ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -123,7 +117,7 @@ class _SignupPageState extends State<SignupPage> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).primaryColor,
                       foregroundColor: Colors.white,
-                      minimumSize: Size(170, 50),
+                      minimumSize: const Size(170, 50),
                     ),
                     onPressed: validator.isValidRegister?() {
 
@@ -134,9 +128,6 @@ class _SignupPageState extends State<SignupPage> {
 
                       FocusScope.of(context).unfocus();
                      _signup();
-                     print(email);
-                     print(password);
-
                     }:null,
                     child: const Text(
                       'Sign Up',
@@ -151,7 +142,7 @@ class _SignupPageState extends State<SignupPage> {
                     const Text('Already Have an Account?'),
                     TextButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginScreen()));
                         },
                         child: const Text('Login')),
                   ],
@@ -169,7 +160,7 @@ class _SignupPageState extends State<SignupPage> {
     User? user = await auth.signupUser(email, password);
 
     if(user!= null){
-      Navigator.push(context,MaterialPageRoute(builder: (context)=>ShowSuccess(title: "Registration Complete")));
+      return Fluttertoast.showToast(msg: 'User Registered Successfully');
     }
   }
 
