@@ -14,7 +14,7 @@ extension StringExtension on String {
   bool get isvalidPassword =>
       RegExp(r'[a-zA-Z0-9!@#$%^&*()]{8}').hasMatch(this);
 
-   bool get isValidUsername => RegExp(r'^[a-zA-Z0-9]+$').hasMatch(this);
+   bool get isValidUsername => RegExp(r'^[a-zA-Z0-9 ]+$').hasMatch(this);
 
 
 }

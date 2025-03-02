@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   AuthService auth = AuthService();
 
   CheckValidation validation = CheckValidation();
+  bool islogin = true;
 
   String? emailError;
   String? passwordError;
@@ -74,6 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   validation.validatePassword(value);
                   setState(() {
                     password = value;
+                    islogin =true;
                   });
                 },
               ),
@@ -82,15 +84,18 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
                     minimumSize: const Size(170, 50),
                   ),
-                  onPressed: validation.isValidLogin?() {
+                  onPressed: (validation.isValidLogin && islogin)?() {
                     _emailController.clear();
                     _passwordController.clear();
                       FocusScope.of(context).unfocus();
                       _login();
+                      setState(() {
+                        islogin = false;
+                      });
                   }:null,
                   child: const Text(
                     'Login',

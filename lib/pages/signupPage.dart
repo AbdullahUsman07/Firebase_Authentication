@@ -22,6 +22,7 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController _passcontroller = TextEditingController();
   TextEditingController _recheckcontroller = TextEditingController();
 
+  bool isRegistered = false;
 
   AuthService auth = AuthService();
 
@@ -106,7 +107,7 @@ class _SignupPageState extends State<SignupPage> {
                   onChanged: (value){
                     validator.validateRecheck(value);
                     setState(() {
-                      
+                      isRegistered = true;
                     });
                   },
                 ),
@@ -115,7 +116,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor,
+                      backgroundColor: Colors.black,
                       foregroundColor: Colors.white,
                       minimumSize: const Size(170, 50),
                     ),
@@ -128,6 +129,9 @@ class _SignupPageState extends State<SignupPage> {
 
                       FocusScope.of(context).unfocus();
                      _signup();
+                     setState(() {
+                       isRegistered = false; // this will disable the signup button after completion
+                     });
                     }:null,
                     child: const Text(
                       'Sign Up',

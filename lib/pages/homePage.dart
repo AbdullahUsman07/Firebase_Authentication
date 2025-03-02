@@ -12,8 +12,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Firebase Authentication'),
-        backgroundColor: Theme.of(context).primaryColor,
+        title:  Text('Firebase Authentication',style:TextStyle(color:Colors.white)),
+        backgroundColor: Colors.black,
         centerTitle: true,
       ),
       body: Center(
@@ -22,9 +22,9 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CustomButton(title: 'Login', onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen())),),
+              CustomButton(title: 'Login', color: Colors.black, onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen())),),
               const SizedBox(height: 20,),
-               CustomButton(title: 'Sign Up', onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> SignupPage())),),
+               CustomButton(title: 'Sign Up', color:Colors.black,onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> SignupPage())),),
             ],
           ),
         ),
