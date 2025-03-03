@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text('Firebase Authentication',style:TextStyle(color:Colors.white)),
+        title:  const Text('Firebase Authentication',style:TextStyle(color:Colors.white)),
         backgroundColor: Colors.black,
         centerTitle: true,
       ),

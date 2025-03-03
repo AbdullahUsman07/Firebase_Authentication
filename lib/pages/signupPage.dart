@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_practice/firebase_auth.dart';
+import 'package:firebase_practice/firebase/firebase_auth.dart';
 import 'package:firebase_practice/pages/loginPage.dart';
 import 'package:firebase_practice/validation/validationLogic.dart';
 import 'package:firebase_practice/widgets/customInput.dart';

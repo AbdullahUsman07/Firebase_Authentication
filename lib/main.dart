@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_practice/pages/databPage.dart';
 import 'package:firebase_practice/pages/homePage.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +23,15 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(  
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.green),
-      home: const HomePage(),
+      home: StreamBuilder(stream: FirebaseAuth.instance.authStateChanges(),
+       builder: (context,snapshot){
+        if(snapshot.hasData){
+          return DataPage();
+        }
+        else{
+          return HomePage();
+        }
+       })
     );
   }
 }
