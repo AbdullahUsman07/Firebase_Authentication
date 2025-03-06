@@ -65,7 +65,7 @@ class _CreatePageState extends State<CreatePage> {
                   title: 'Save',
                   onTap: () {
                     create(
-                        'Student ',
+                        _collectioncontroller.text,
                         _namecontroller.text,
                         _namecontroller.text,
                         _qualicontroller.text,

@@ -4,6 +4,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_practice/pages/dataFunctionPages/createPage.dart';
 import 'package:firebase_practice/pages/dataFunctionPages/deletePage.dart';
+import 'package:firebase_practice/pages/dataFunctionPages/retrievePage.dart';
 import 'package:firebase_practice/pages/dataFunctionPages/updatePage.dart';
 import 'package:firebase_practice/widgets/customButton.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,9 @@ class DataPage extends StatelessWidget {
                 moveToPage(context, UpdatePage());
               }, color: Theme.of(context).primaryColor),
               const SizedBox(height: 20,),
-              CustomButton(title: 'Retreive', onTap: (){}, color: Theme.of(context).primaryColor),
+              CustomButton(title: 'Retreive', onTap: (){
+                moveToPage(context, RetrievePage());
+              }, color: Theme.of(context).primaryColor),
               
             ],
           ),
