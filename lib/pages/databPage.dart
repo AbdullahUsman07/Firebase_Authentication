@@ -3,6 +3,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_practice/pages/dataFunctionPages/createPage.dart';
+import 'package:firebase_practice/pages/dataFunctionPages/deletePage.dart';
+import 'package:firebase_practice/pages/dataFunctionPages/updatePage.dart';
 import 'package:firebase_practice/widgets/customButton.dart';
 import 'package:flutter/material.dart';
 
@@ -31,13 +33,17 @@ class DataPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomButton(title: 'Create', onTap: (){
-                Navigator.push(context, 
-                MaterialPageRoute(builder: (context)=> CreateCollection()));
+                moveToPage(context, CreatePage());
               }, color: Theme.of(context).primaryColor),
               const SizedBox(height: 20,),
-              CustomButton(title: 'Delete', onTap: (){}, color: Theme.of(context).primaryColor),
+              CustomButton(title: 'Delete', onTap: (){
+                moveToPage(context, const DeletePage());
+                
+              }, color: Theme.of(context).primaryColor),
               const SizedBox(height: 20,),
-              CustomButton(title: 'Update', onTap: (){}, color: Theme.of(context).primaryColor),
+              CustomButton(title: 'Update', onTap: (){
+                moveToPage(context, UpdatePage());
+              }, color: Theme.of(context).primaryColor),
               const SizedBox(height: 20,),
               CustomButton(title: 'Retreive', onTap: (){}, color: Theme.of(context).primaryColor),
               
@@ -47,4 +53,11 @@ class DataPage extends StatelessWidget {
       ),
     );
   }
+
+   void moveToPage(BuildContext context,Widget page){
+    Navigator.push(
+      context,
+    MaterialPageRoute(builder: (context)=> page));
+  }
+  
 }

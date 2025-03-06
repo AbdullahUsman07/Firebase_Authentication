@@ -36,12 +36,3 @@ class _MyAppState extends State<MyApp> {
 }
 
 
-// home: StreamBuilder(stream: FirebaseAuth.instance.authStateChanges(),
-//        builder: (context,snapshot){
-//         if(snapshot.hasData){
-//           return DataPage();
-//         }
-//         else{
-//           return HomePage();
-//         }
-//        })

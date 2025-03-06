@@ -3,25 +3,25 @@ import 'package:firebase_practice/widgets/customButton.dart';
 import 'package:firebase_practice/widgets/customInput.dart';
 import 'package:flutter/material.dart';
 
-class CreatePage extends StatefulWidget {
-  CreatePage({super.key});
+class UpdatePage extends StatefulWidget {
+  const UpdatePage({super.key});
 
   @override
-  State<CreatePage> createState() => _CreatePageState();
+  State<UpdatePage> createState() => _UpdatePageState();
 }
 
-class _CreatePageState extends State<CreatePage> {
+class _UpdatePageState extends State<UpdatePage> {
   TextEditingController _collectioncontroller = TextEditingController();
-  TextEditingController _namecontroller = TextEditingController();
-  TextEditingController _agecontroller = TextEditingController();
-  TextEditingController _qualicontroller = TextEditingController();
+  TextEditingController _doccontroller = TextEditingController();
+  TextEditingController _feildcontroller = TextEditingController();
+  TextEditingController _newfeildcontroller = TextEditingController();
 
   @override
   void dispose() {
     _collectioncontroller.dispose();
-    _namecontroller.dispose();
-    _agecontroller.dispose();
-    _qualicontroller.dispose();
+    _doccontroller.dispose();
+    _feildcontroller.dispose();
+    _newfeildcontroller.dispose();
     super.dispose();
   }
 
@@ -29,7 +29,7 @@ class _CreatePageState extends State<CreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Record'),
+        title: const Text('Update'),
         centerTitle: true,
         elevation: 5.0,
       ),
@@ -44,40 +44,33 @@ class _CreatePageState extends State<CreatePage> {
               const SizedBox(
                 height: 20,
               ),
-              CustomFormFeild(title: 'Name', controller: _namecontroller),
+              CustomFormFeild(title: 'Doc Name', controller: _doccontroller),
               const SizedBox(
                 height: 20,
               ),
               CustomFormFeild(
-                title: 'Age',
-                controller: _agecontroller,
-                keyboardType: TextInputType.number,
-              ),
+                  title: 'feild you wanna update',
+                  controller: _feildcontroller),
               const SizedBox(
                 height: 20,
               ),
               CustomFormFeild(
-                  title: 'Qualification', controller: _qualicontroller),
+                  title: 'new feild', controller: _newfeildcontroller),
               const SizedBox(
                 height: 30,
               ),
               CustomButton(
-                  title: 'Save',
+                  title: 'Update',
                   onTap: () {
-                    create(
-                        'Student ',
-                        _namecontroller.text,
-                        _namecontroller.text,
-                        _qualicontroller.text,
-                        _agecontroller.text);
-                      _agecontroller.clear();
-                      _namecontroller.clear();
-                      _qualicontroller.clear();
-                      _collectioncontroller.clear();
+                    update(_collectioncontroller.text, _doccontroller.text,
+                        _feildcontroller.text, _newfeildcontroller.text);
+                        _collectioncontroller.clear();
+                        _doccontroller.clear();
+                        _feildcontroller.clear();
+                        _newfeildcontroller.clear();
 
-                      FocusScope.of(context).unfocus();
+                        FocusScope.of(context).unfocus();
                   },
-
                   color: Theme.of(context).primaryColor),
             ],
           ),

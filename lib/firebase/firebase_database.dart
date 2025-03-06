@@ -9,5 +9,16 @@ create(String colName, docName, name, qualification, age)async{
     'age': age,
     'qualification': qualification,
   });
-  Fluttertoast.showToast(msg: 'Collecion Created');
+  Fluttertoast.showToast(msg: 'Record Added');
+}
+
+delete(String colName, String docName)async{
+  await FirebaseFirestore.instance.collection(colName).doc(docName).delete();
+  Fluttertoast.showToast(msg: 'Record Deleted');
+}
+
+
+update(String colName, docname, feildName, var newFeild)async{
+  await FirebaseFirestore.instance.collection(colName).doc(docname).update({feildName:newFeild});
+  Fluttertoast.showToast(msg: 'Record Updated');
 }
