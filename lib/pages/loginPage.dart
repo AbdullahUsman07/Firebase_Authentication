@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_practice/firebase/firebase_auth.dart';
+import 'package:firebase_practice/pages/databPage.dart';
 import 'package:firebase_practice/pages/signupPage.dart';
 import 'package:firebase_practice/validation/validationLogic.dart';
 import 'package:firebase_practice/widgets/customInput.dart';
@@ -25,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String? emailError;
   String? passwordError;
 
-  String email= "@gmail.com";
+  String email = "@gmail.com";
   String password = "*****";
 
   @override
@@ -47,20 +48,24 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Login',style: TextStyle(fontSize: 25),),
-              const SizedBox(height: 20,),
+              const Text(
+                'Login',
+                style: TextStyle(fontSize: 25),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               CustomFormFeild(
                 title: 'Email',
                 keyboardType: TextInputType.emailAddress,
                 controller: _emailController,
                 errorText: validation.email.error,
-                onChanged: (value){
+                onChanged: (value) {
                   validation.validateEmail(value);
                   setState(() {
                     email = value;
                   });
                 },
-
               ),
               const SizedBox(
                 height: 20,
@@ -71,11 +76,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: _passwordController,
                 obscureText: true,
                 errorText: validation.password.error,
-                onChanged: (value){
+                onChanged: (value) {
                   validation.validatePassword(value);
                   setState(() {
                     password = value;
-                    islogin =true;
+                    islogin = true;
                   });
                 },
               ),
@@ -88,33 +93,38 @@ class _LoginScreenState extends State<LoginScreen> {
                     foregroundColor: Colors.white,
                     minimumSize: const Size(170, 50),
                   ),
-                  onPressed: (validation.isValidLogin && islogin)?() {
-                    _emailController.clear();
-                    _passwordController.clear();
-                      FocusScope.of(context).unfocus();
-                      _login();
-                      setState(() {
-                        islogin = false;
-                      });
-                  }:null,
+                  onPressed: (validation.isValidLogin && islogin)
+                      ? () {
+                          _emailController.clear();
+                          _passwordController.clear();
+                          FocusScope.of(context).unfocus();
+                          _login();
+                          setState(() {
+                            islogin = false;
+                          });
+                        }
+                      : null,
                   child: const Text(
                     'Login',
                     style: TextStyle(fontSize: 16),
                   )),
-                  const SizedBox(height: 10,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                    const Text("Don't Have an Account?"),
-                    TextButton(
-                     onPressed:(){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context)=> const SignupPage())
-                      );
-                     }
-                      , child: const Text('Register')),
-                  ],)
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't Have an Account?"),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignupPage()));
+                      },
+                      child: const Text('Register')),
+                ],
+              )
             ],
           ),
         ),
@@ -122,15 +132,18 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  _login()async{
+  _login() async {
     User? user = await auth.loginUser(email, password);
 
-    if(user!=null){
-      return Fluttertoast.showToast(msg: 'Login Successful');
+    if (user != null) {
+      Fluttertoast.showToast(msg: 'Login Successful');
+
+      // a slight delay before navigating to the next page
+
+      Future.delayed(Duration(milliseconds: 500), () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const DataPage()));
+      });
     }
   }
-
-  
 }
-
-

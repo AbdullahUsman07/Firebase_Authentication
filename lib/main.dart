@@ -4,7 +4,7 @@ import 'package:firebase_practice/pages/databPage.dart';
 import 'package:firebase_practice/pages/homePage.dart';
 import 'package:flutter/material.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -20,18 +20,28 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(  
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primaryColor: Colors.green),
-      home: StreamBuilder(stream: FirebaseAuth.instance.authStateChanges(),
-       builder: (context,snapshot){
-        if(snapshot.hasData){
-          return DataPage();
-        }
-        else{
-          return HomePage();
-        }
-       })
-    );
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primaryColor: Colors.black),
+        home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return DataPage();
+              } else {
+                return HomePage();
+              }
+            }));
   }
 }
+
+
+// home: StreamBuilder(stream: FirebaseAuth.instance.authStateChanges(),
+//        builder: (context,snapshot){
+//         if(snapshot.hasData){
+//           return DataPage();
+//         }
+//         else{
+//           return HomePage();
+//         }
+//        })
